@@ -37,13 +37,9 @@ public class ProdutoController {
     public ResponseEntity<Produto> save(@RequestBody @Valid ProdutoRequest request) {
 
         Produto produtoNovo = request.build();
-
         CategoriaProduto cp = categoriaProdutoService.obterPorID(request.getIdCategoria());
-
         produtoNovo.setCategoria(cp);
-
         Produto produto = produtoService.save(produtoNovo);
-
         return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
     }
 
