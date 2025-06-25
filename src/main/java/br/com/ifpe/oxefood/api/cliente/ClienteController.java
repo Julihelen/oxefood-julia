@@ -2,6 +2,7 @@ package br.com.ifpe.oxefood.api.cliente;
 
 import java.util.List;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class ClienteController {
         
         
         //O campo fone tem que ter mais que 8 caracteres e menos que 20
-        if (clienteRequisicao.getFone() != null && (clienteRequisicao.getFone().length() < 8 || clienteRequisicao.getFone().length() > 20)) {
+        if (clienteRequisicao.getFoneCelular() != null && (clienteRequisicao.getFoneCelular().length() < 8 || clienteRequisicao.getFoneCelular().length() > 20)) {
             erros.append("O campo Fone tem que ter entre 8 e 20 caracteres. ");
         }
         
