@@ -3,10 +3,7 @@ package br.com.ifpe.oxefood.modelo.cliente;
 
 import java.util.ArrayList;
 import java.util.List;
-import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
-import br.com.ifpe.oxefood.modelo.cliente.EnderecoCliente;
-import br.com.ifpe.oxefood.modelo.cliente.EnderecoClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,13 +63,11 @@ public class ClienteService {
         Cliente cliente = this.obterPorID(clienteId);
         
         //Primeiro salva o EnderecoCliente:
-
         endereco.setCliente(cliente);
         endereco.setHabilitado(Boolean.TRUE);
         enderecoClienteRepository.save(endereco);
         
         //Depois acrescenta o endereço criado ao cliente e atualiza o cliente:
-
         List<EnderecoCliente> listaEnderecoCliente = cliente.getEnderecos();
         
         if (listaEnderecoCliente == null) {

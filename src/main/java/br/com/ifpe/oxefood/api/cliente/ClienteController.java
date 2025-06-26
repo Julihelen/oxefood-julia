@@ -39,7 +39,7 @@ public class ClienteController {
     
         //O campo nome não pode ser nulo e nem vazio
         if (clienteRequisicao.getNome() == null || clienteRequisicao.getNome().equals("")) {
-            erros.append("O campo Nome é de preenchimento obrigatório. ");
+            erros.append("O campo Nome é de preenchimento obrigatório.");
         }
         
         //O campo nome não pode ser maior que 100 caracteres
@@ -79,6 +79,7 @@ public class ClienteController {
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

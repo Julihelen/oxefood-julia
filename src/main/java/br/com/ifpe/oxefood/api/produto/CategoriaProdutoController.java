@@ -29,7 +29,6 @@ public class CategoriaProdutoController {
 
     @PostMapping
     public ResponseEntity<CategoriaProduto> save(@RequestBody @Valid CategoriaProdutoRequest request) {
-
         CategoriaProduto categoriaProdutoNovo = request.build();
         CategoriaProduto categoriaProduto = categoriaProdutoService.save(categoriaProdutoNovo);
         return new ResponseEntity<CategoriaProduto>(categoriaProduto, HttpStatus.CREATED);
