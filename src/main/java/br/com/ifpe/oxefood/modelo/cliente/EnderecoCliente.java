@@ -26,20 +26,20 @@ import lombok.Setter;
 public class EnderecoCliente extends EntidadeAuditavel {
 
     @JsonIgnore
-    @ManyToOne
-    private Cliente cliente;
+   @ManyToOne
+   private Cliente cliente;
 
-    @Column
-    private String rua;
+   @Column
+   private String rua;
 
-    @Column
-    private String numero;
+   @Column
+   private String numero;
 
-    @Column
-    private String bairro;
+   @Column
+   private String bairro;
 
-    @Column
-    private String cep;
+   @Column
+   private String cep;
 
    @Column
    private String cidade;

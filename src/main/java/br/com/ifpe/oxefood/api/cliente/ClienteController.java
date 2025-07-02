@@ -2,7 +2,6 @@ package br.com.ifpe.oxefood.api.cliente;
 
 import java.util.List;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,37 +27,12 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-    private Cliente clienteRequisicao;
-    private Object erros;
 
     @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
 
         Cliente cliente = clienteService.save(request.build());
         return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
-    
-        //O campo nome não pode ser nulo e nem vazio
-        if (clienteRequisicao.getNome() == null || clienteRequisicao.getNome().equals("")) {
-            erros.append("O campo Nome é de preenchimento obrigatório.");
-        }
-        
-        //O campo nome não pode ser maior que 100 caracteres
-        ...
-        
-        
-        //O campo fone tem que ter mais que 8 caracteres e menos que 20
-        if (clienteRequisicao.getFoneCelular() != null && (clienteRequisicao.getFoneCelular().length() < 8 || clienteRequisicao.getFoneCelular().length() > 20)) {
-            erros.append("O campo Fone tem que ter entre 8 e 20 caracteres. ");
-        }
-        
-        if (erros.length() > 0) {
-            throw new BadRequestException(erros.toString());
-        }
-
-        Cliente clienteSalvo = clienteService.save(clienteRequisicao);
-	    return new ResponseEntity<Cliente>(clienteSalvo, HttpStatus.CREATED);
-
-
     }
 
     @GetMapping
@@ -79,7 +53,6 @@ public class ClienteController {
         clienteService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

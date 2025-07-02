@@ -3,33 +3,19 @@ package br.com.ifpe.oxefood.modelo.produto;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import jakarta.transaction.Transactional;
 
-
 @Service
 public class ProdutoService {
-    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    public class ProdutoException extends RuntimeException {
-
-        public static final String MSG_VALOR_MINIMO_PRODUTO = "Não é permitido inserir produtos com valores inferiores a R$ 10.";
-
-        public ProdutoException(String msg) {
-
-        super(String.format(msg));
-        }
-    }
+    
     @Autowired
     private ProdutoRepository repository;
 
     @Transactional
     public Produto save(Produto produto) {
-        if (produto.getValorUnitario() < 10) {
-            throw new ProdutoException(ProdutoException.MSG_VALOR_MINIMO_PRODUTO);
-        }
+
         produto.setHabilitado(Boolean.TRUE);
         return repository.save(produto);
     }
